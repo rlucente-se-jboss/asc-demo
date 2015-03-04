@@ -3,8 +3,7 @@ BPMS 6 with the latest rollup patch applied.  The scripts also set up a
 properly patched directory of runtimes for JBDS to use for both Drools
 and jBPM.
 
-To use this, edit the demo.conf file and make sure the "dist" directory
-contains the following files:
+To use this, make sure the "dist" directory contains the following files:
 
     jboss-bpms-installer-6.0.3.GA-redhat-1.jar
     jboss-bpms-6.0.3.GA-redhat-1-deployable-generic.zip
