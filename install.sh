@@ -81,7 +81,9 @@ PUSHD ${WORK_DIR}
     $JBOSS_HOME/bin/add-user.sh -a -p 'demo!123' -u appraiser2 -s -ro user,appraiser
 
     # add the mysql driver and datasource
-    cp ${BIN_DIR}/mysql-connector-java.jar ${JBOSS_HOME}/standalone/deployments
+    mkdir -p ${JBOSS_HOME}/modules/com/mysql/main
+    cp ${BIN_DIR}/mysql-connector-java.jar ${JBOSS_HOME}/modules/com/mysql/main
+    cp ${WORK_DIR}/module.xml ${JBOSS_HOME}/modules/com/mysql/main
 
     PUSHD ${JBOSS_HOME}
         bin/standalone.sh &
