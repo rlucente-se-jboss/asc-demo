@@ -39,8 +39,8 @@ Github Repositories
 -------------------
 
 BPMS 6 PoC with workflows, task forms, rules, etc:
-https://github.com/rlucente-se-jboss/bpmdemo.git
+https://github.com/bit4man/bpmpoc2015.git
 
 Data model for PoC with persistence:
-https://github.com/bit4man/bpmdemo1.git
+https://github.com/bit4man/bpmdemo.git
 
