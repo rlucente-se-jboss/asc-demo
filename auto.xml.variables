@@ -1,0 +1,5 @@
+adminPassword=demo!123
+bpms.password=demo!123
+generated.keystores.server.storepass=demo!123
+generated.keystores.client.storepass=demo!123
+vault.keystorepwd=demo!123
