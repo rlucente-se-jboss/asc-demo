@@ -2,6 +2,25 @@
 
 . `dirname $0`/demo.conf
 
+function wait_for_eap_code() {
+   timeout 20 grep -q $1 <(tail -f ${JBOSS_HOME}/standalone/log/server.log)
+   echo "[ Server code detected: $1 ]"
+   echo
+}
+
+function wait_for_eap_stop() {
+  wait_for_eap_code JBAS015950
+}
+
+function wait_for_eap_start() {
+   while [ ! -f "${JBOSS_HOME}/standalone/log/server.log" ]
+   do
+     sleep 1
+   done
+
+  wait_for_eap_code JBAS015874
+}
+
 PUSHD ${WORK_DIR}
     # clean existing install
     ./clean.sh
@@ -60,4 +79,18 @@ PUSHD ${WORK_DIR}
     $JBOSS_HOME/bin/add-user.sh -a -p 'demo!123' -u manager2 -s -ro user,manager
     $JBOSS_HOME/bin/add-user.sh -a -p 'demo!123' -u appraiser1 -s -ro user,appraiser
     $JBOSS_HOME/bin/add-user.sh -a -p 'demo!123' -u appraiser2 -s -ro user,appraiser
+
+    # add the mysql driver and datasource
+    cp ${BIN_DIR}/mysql-connector-java.jar ${JBOSS_HOME}/standalone/deployments
+
+    PUSHD ${JBOSS_HOME}
+        bin/standalone.sh &
+        wait_for_eap_start
+
+        bin/jboss-cli.sh --connect --file=${WORK_DIR}/mysql-datasource.cli
+        sleep 10
+
+        pkill -u $USER java
+        wait_for_eap_stop
+    POPD
 POPD

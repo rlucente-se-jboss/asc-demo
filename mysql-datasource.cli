@@ -1,0 +1,11 @@
+#
+# CLI batch file that defines the MySQL datasource
+#
+
+batch
+
+/subsystem=datasources/data-source=bpmdemo:add(jta=false,jndi-name="java:jboss/datasources/bpmdemo", use-ccm=false, connection-url="jdbc:mysql://localhost:3306/bpmdemo", driver-class="com.mysql.jdbc.Driver", driver-name="mysql-connector-java.jar", user-name="bpmdemo", password="demo!123", validate-on-match=false, background-validation=false, share-prepared-statements=false)
+
+/subsystem=datasources/data-source=bpmdemo:enable(persistent=true)
+
+run-batch
