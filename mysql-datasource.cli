@@ -8,6 +8,9 @@ batch
 
 /subsystem=datasources/data-source=bpmdemo:add(jta=false,jndi-name="java:jboss/datasources/bpmdemo", use-ccm=false, connection-url="jdbc:mysql://localhost:3306/bpmdemo", driver-name="mysql", user-name="bpmdemo", password="demo!123", validate-on-match=false, background-validation=false, share-prepared-statements=false)
 
+/subsystem=datasources/data-source=notedb:add(jta=false,jndi-name="java:jboss/datasources/notedb", use-ccm=false, connection-url="jdbc:mysql://localhost:3306/notedb", driver-name="mysql", user-name="notedb", password="demo!123", validate-on-match=false, background-validation=false, share-prepared-statements=false)
+
 /subsystem=datasources/data-source=bpmdemo:enable(persistent=true)
+/subsystem=datasources/data-source=notedb:enable(persistent=true)
 
 run-batch
